@@ -91,13 +91,3 @@ ImportError: No module named 'fitz'
 Cannot connect to backend server
 ```
 **Solution:** Make sure backend is running on port 8000
-
----
-
-<div align="center">
-
-**Made with ❤️ for better hiring decisions**
-
-[⭐ Star this repo](https://github.com/yourusername/ai-interview-assistant) | [🐛 Report Bug](https://github.com/yourusername/ai-interview-assistant/issues) | [💡 Request Feature](https://github.com/yourusername/ai-interview-assistant/issues)
-
-</div>
