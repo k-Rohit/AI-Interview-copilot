@@ -121,7 +121,6 @@ def ai_interview_assistant():
         generate_summary_btn = st.button(
             "🚀 Generate Summary",
             type="primary",
-            disabled=not (resume_file and job_description and job_description.strip()),
             use_container_width=True
         )
 
@@ -153,7 +152,10 @@ def ai_interview_assistant():
             st.session_state['resume_text'] = extract_text_from_file(resume_file)
             st.session_state['job_description'] = job_description
             st.session_state['summary'] = summary
-            st.success("✅ Summary generated and saved. Switch to 'Generate Questions' page for interview questions.")
+            if len(summary) > 1000:
+               st.success("✅ Summary generated and saved. Switch to 'Generate Questions' page for interview questions.")
+            else:
+               st.warning("⚠️ Summary is too short. Please check the resume and job description for completeness.")
         except Exception as e:
             progress_bar.empty()
             status_text.empty()
