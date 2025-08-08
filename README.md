@@ -19,7 +19,7 @@ An intelligent interview preparation tool that generates tailored candidate summ
 
 | Component | Technology |
 |-----------|------------|
-| **Backend** | FastAPI + Python 3.12 |
+| **Backend** | FastAPI + Python 3.12.11 |
 | **AI/ML** | LangChain + OpenAI GPT-4 |
 | **Frontend** | Streamlit |
 | **PDF Processing** | PyMuPDF (fitz) |
