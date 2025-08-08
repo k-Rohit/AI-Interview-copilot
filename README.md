@@ -70,9 +70,9 @@ streamlit run app.py
 
 **1. OpenAI API Key Error**
 ```
-Error: api_key not found or invalid
+Error: The api_key client option must be set
 ```
-**Solution:** Check your api_key that its correct and you have pasted it in streamlit
+**Solution:** Check your `.env` file format (no quotes around the key)
 
 **2. File Upload Error**
 ```
