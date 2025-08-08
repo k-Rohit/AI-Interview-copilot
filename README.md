@@ -70,9 +70,9 @@ streamlit run app.py
 
 **1. OpenAI API Key Error**
 ```
-Error: The api_key error
+Error: api_key not found or invalid
 ```
-**Solution:** Check your api_key properly that its correct
+**Solution:** Check your api_key that its correct and you have pasted it in streamlit
 
 **2. File Upload Error**
 ```
@@ -80,6 +80,11 @@ Error: Could not extract text from resume
 ```
 **Solution:** Ensure the PDF is text-based (not scanned images)
 
+**3. Import Error**
+```
+ImportError: No module named 'fitz'
+```
+**Solution:** Install PyMuPDF: `pip install PyMuPDF`
 
 **4. Connection Error**
 ```
@@ -88,6 +93,7 @@ Cannot connect to backend server
 **Solution:** Make sure backend is running on port 8000
 
 ---
+
 <div align="center">
 
 **Made with ❤️ for better hiring decisions**
