@@ -1,0 +1,17 @@
+Title: Content Manager
+Job ID: AVON100
+Display Job ID: AVON100|AN-AST-1909
+Client: The Cosmetic Company A
+Industry: Cosmetics
+Category: Sales
+Experience Level: Experienced
+Location Type: Onsite
+Work From Anywhere: No
+SUMMARY:
+At Avon, beauty is more than skin deep. We are inspired by our community of passionate women; yesterday, today, and tomorrow. Avon is all about celebrating each other and our achievements in business and in life, inviting others to join us, and committing to be a force for good. About the Role We are looking for a qualified Content manager to join our team. You will be responsible for creating, improving, maintaining and testing content to achieve our business goals. Your duties will also include creating basic HTML within our front-end framework. Our ideal candidate is an experienced professional with a strong understanding of front-end development as it pertains to content management. As a Content Manager, you should perform well under deadlines and be detail oriented. Ultimately, you should be able to oversee all marketing & merchandising content initiatives to ensure engagement, brand consistency and a positive user experience. Will report to the Senior Manager, Digital Creative. This is contract only with the opportunity for extension Looking for someone who is local to NYC and could go onsite as needed. Additional candidate will be considered who offer a strong portfolio
+RESPONSIBILITIES:
+Responsibilities: Collaborating with Marketing, UX, Design & Development teams to understand and implement key objectives stated on creative requests. Delivering completed tasks on time, ensuring they are executed with consistency and on brand. Content management within Avon’s Magnolia CMS; must be comfortable hand-coding in HTML, CSS and JavaScript Ability to translate Photoshop designs to code, with a high degree of visual accuracy Stay up to date with developments and generate new ideas
+REQUIREMENTS:
+N/A
+SKILLS:
+None listed

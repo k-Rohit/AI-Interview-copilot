@@ -1,0 +1,25 @@
+Title: (Senior) Duty Engineer
+Job ID: 24183175
+Display Job ID: 24183175|EDMC-86169
+Client: Marriott Rochester Airport
+Industry: Hospitality
+Category: Information Technology
+Experience Level: Manager
+Location Type: Onsite
+SUMMARY:
+We are seeking a highly skilled (Senior) Duty Engineer to join our team in the hospitality industry. This pivotal role requires an experienced manager with 7 to 10 years of experience in information technology, specifically within a hospitality context. As a (Senior) Duty Engineer, you will be responsible for overseeing and managing the IT operations within our establishments, ensuring that all systems run efficiently and effectively. Your expertise will play a crucial role in maintaining high standards of service delivery while supporting various departments with their technological needs. Key responsibilities include supervising the maintenance of hardware and software systems, troubleshooting technical issues as they arise, and implementing best practices for system performance optimization. You will work closely with other managers to coordinate IT projects that enhance operational efficiency and guest satisfaction. The ideal candidate should possess strong leadership skills, capable of guiding teams through complex challenges while fostering an environment conducive to collaboration and innovation. A solid understanding of network infrastructure, database management, and cybersecurity principles is essential. Additionally, your ability to communicate effectively across departmental lines will be vital in addressing user concerns promptly and effectively resolving any technical dilemmas encountered by staff or guests alike. In summary, we are looking for a dedicated professional who can bring both managerial prowess and technical acumen to our organization. If you have a passion for technology in the hospitality sector coupled with extensive experience leading IT initiatives successfully, we encourage you to apply for this exciting opportunity as (Senior) Duty Engineer.
+RESPONSIBILITIES:
+Lead the technical operations and maintenance of hospitality systems, ensuring optimal performance and reliability. Oversee the implementation of IT projects related to hotel management software, property management systems, and guest service technologies. Collaborate with various departments to gather requirements and translate them into effective technology solutions that enhance operational efficiency. Provide mentorship and guidance to junior IT staff, fostering a culture of continuous improvement within the team. Develop comprehensive documentation for system configurations, troubleshooting procedures, and user guides to facilitate knowledge sharing across departments. Monitor system performance metrics regularly; analyze data trends to identify potential issues or areas for enhancement in infrastructure services. Establish robust backup protocols and disaster recovery plans to safeguard critical information against loss or disruption. Conduct regular training sessions for staff on new technologies implemented within the organization, ensuring smooth adoption among users. Serve as a key point of contact between external vendors and internal stakeholders for technology-related queries or support needs. Stay abreast of industry advancements in hospitality technology; evaluate emerging tools that could bolster operational success.
+REQUIREMENTS:
+Extensive experience in information technology within the hospitality industry, specifically as a Duty Engineer. Proven management experience of 7 to 10 years, showcasing leadership abilities in IT operations. Strong understanding of hotel management systems and related technologies. Proficient in troubleshooting and resolving technical issues swiftly to minimize operational downtime. Familiarity with network infrastructure, including routers, switches, firewalls, and wireless access points. Experience in implementing IT policies and procedures that enhance operational efficiency and security compliance. Ability to manage multiple projects simultaneously while maintaining high-quality standards for service delivery. Excellent communication skills to effectively interact with both technical teams and non-technical stakeholders across various departments. Knowledge of data backup solutions and disaster recovery planning tailored for hospitality environments. Willingness to work flexible hours, including nights or weekends as required by operational needs.
+SKILLS:
+- System administration
+- Network management
+- IT infrastructure
+- Incident management
+- Project management
+- Technical support
+- Security protocols
+- Data analysis
+- Cloud computing
+- Team leadership

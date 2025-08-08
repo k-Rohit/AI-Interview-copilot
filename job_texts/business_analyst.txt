@@ -1,0 +1,17 @@
+Title: Business Analyst
+Job ID: AVON041
+Display Job ID: AVON041|AN-AST-14499
+Client: The Cosmetic Company A
+Industry: Cosmetics
+Category: Information Technology
+Experience Level: Experienced
+Location Type: Onsite
+Work From Anywhere: No
+SUMMARY:
+Business Analyst will be coordinating all the business requests to address to the SAP by design supply chain and finance module coordination expert. You will support and configure the supply chain as well as finance processes in SAP or SAP by Design environment. Partnering with other teams to achieve organizational goals is just as important as your technical skills. This position will report to the head of IT in LG North America.
+RESPONSIBILITIES:
+· Analyze business requests, design solutions, set and coordinate delivery priorities, develop test plans, and make schedule adjustments and communicate with IT service provider. · Support and configure supply chain processes including sales order processing, purchase order processing, inventory management, manufacturing, MRP and EDI in and multi-currency SAP By Design environment · Coordinate with IT service provider and business resources to provide production support · Provide vision, leadership and drive the processes changes and improvements within the SCM and financial functions · Participate in strategy planning activities, and be the functional leader in the analysis, requirement development, design, documentation, and testing for all SCM/financial system enhancements and changes and communicate with IT service provider. · Develop functional training and coordinate the on-going functional support
+REQUIREMENTS:
+N/A
+SKILLS:
+None listed

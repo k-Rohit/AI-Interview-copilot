@@ -1,0 +1,29 @@
+Title: Backend Ruby on Rails Developer
+Job ID: PROSFUIN1592330356-1
+Display Job ID: PROSFUIN1592330356-1|PRS-PHO-1979
+Client: Prosperix
+Industry: Information Technology and Services
+Category: Information Technology
+Experience Level: Experienced
+Location Type: Remote
+Work From Anywhere: Yes
+SUMMARY:
+We are looking for a Ruby on Rails developer responsible for managing the interchange of data between the server and the users. Your primary focus will be development of all server-side logic, definition and maintenance of the central database, and ensuring high performance and responsiveness to requests from the front-end. You will also be responsible for integrating the front-end elements built by your co-workers into the application. Therefore, a basic understanding of front-end technologies is necessary as well.
+RESPONSIBILITIES:
+Responsibilities: Develop clean, efficient, reliable and maintainable Ruby code Conducting code reviews Identify areas of improvement, investigate bugs, implement solutions/fixes Integrate user-facing elements developed by front-end developers with server side business logic
+REQUIREMENTS:
+Candidates should have the following minimum qualifications: 3+ years experience with Ruby on Rails, along with other common libraries such as RSpec Good understanding of Ruby syntax and its nuances Solid understanding of object-oriented programming Familiarity with MVC, Mocking, ORM, and RESTful The ability to maintainable and scalable Ruby code Experience working with PostgreSQL or RDBMS Experience in writing SQL queries Candidates with the following qualification are preferred: Although the role is remote candidates located in Delhi NCR and Pune are preferred Experience working with ElasticSearch Experience working with messaging and queuing technologies including RabbitMQ, Sidkiq, etc.. Familiarly and some experience with Continuous Integration and/or confirmation and management tools including Git, JIRA, Confluence, etc) Basic understanding of front-end technologies, such as JavaScript, HTML5, and CSS3
+SKILLS:
+- Atlassian JIRA
+- Confluence
+- ElasticSearch
+- Git/Github
+-  HTML/HTML5 
+- javascript
+- MVC
+- PostgreSQL
+- RabbitMQ
+- RDBMS
+- RSpec
+- Ruby  on Rails
+- sidekiq-scheduler

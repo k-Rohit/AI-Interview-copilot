@@ -1,0 +1,17 @@
+Title: Business Analyst- Finance
+Job ID: SJI112
+Display Job ID: SJI112|SJI-SJI-44112
+Client: The Oil & Gas Company
+Industry: Oil & Energy
+Category: Information Technology
+Experience Level: Manager
+Location Type: Onsite
+Work From Anywhere: No
+SUMMARY:
+Specific highly desired skills include experienced documenting requirements for financial systems, financial reports, etc. and/or experienced in documenting requirements for ERP system integrations, including datamapping. This is less time critical, as the hiring manager already has someone in the role but is looking to transition them to another project. Ideally would like to have someone in place by early July so they can have 2-3 weeks to transition.
+RESPONSIBILITIES:
+With minimal supervision, the Business Analyst will perform the following: Work closely with the business to analyze problem areas and assist in the development of business cases Consults with the business to identify, define and document business needs and objectives, current state procedures, problems, input and output requirements,levels of system access and proposed future state. Acts as a liaison between HR departmental end-users, project manager, information technology, and consultants in the analysis, design, configuration, testing and maintenance of Workday HR systems. Analyzes the feasibility of, and develops requirements for, new functionalities in Workday HR systems and enhancements to existing Workday HR systems; ensures the design fits the needs of the HR business process owners. Tracks and fully documents changes for functional and business specifications; writes detailed universally understood procedures for project artifacts and potential use in training Identifies opportunities for improving business processes through technology and/or non-system changes Reads and interprets functional technical literature and translates in terms understandable to the end-users Maybe required to organize and conduct HR business process reengineering/ improvement sessions Leads the Workday HR system testing process including development of UAT and End-to-End Test plans working closely with the users.
+REQUIREMENTS:
+N/A
+SKILLS:
+None listed

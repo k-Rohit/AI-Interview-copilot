@@ -1,0 +1,17 @@
+Title: CC&B Systems Administrator
+Job ID: SJI101
+Display Job ID: SJI101|SJI-SJI-73268
+Client: The Oil & Gas Company
+Industry: Oil & Energy
+Category: Information Technology
+Experience Level: Experienced
+Location Type: Onsite
+Work From Anywhere: No
+SUMMARY:
+MUST have at least 12 Months of total and verifiable experience with any utility industry client/project, with a t least 12 months of total experience as a Systems or Technical Analyst with Functional (Operational and Technical) roles and responsibilities within Oracle Customer Care and Billing( CC&B ) in addition to one of the following applications are preferred: - Oracle Realtime Scheduler (ORS) - Mobile Workforce Management (MWM)
+RESPONSIBILITIES:
+Should have a sound understanding of functional and technical workings of Oracle Utilities based products. (CCB, ORS, MWM) Know how to research, discover and assess the product for alignment with client requirements. Know how to utilize the system and its installed resources to design solutions and make recommendations. Should know the technical architectures Have knowledge on critical setup, configuration and extensions needed for implementation. Be able to assist with creating, coordinating and configuring batch runs, jobs etc. within OUAF Be knowledgeable with at least 5 of the following: The UI, Customer Setup, AccountSetup, Configuration, Zones, Interfaces, creating algorithms, extending algorithms, Creating To-Dos, Configuring To-Dos, Credit and Collections.
+REQUIREMENTS:
+At least 6 months of experience with either (A) one full cycle implementation or (B) Support of the OUA framework product group, that includes CCB, ORS, MWM Please Denote any of the following: · Certifications in Oracle CCB, MBM, WFM ·Other Oracle Certifications ·Other Oracle Training ·Demonstrated management abilities ·Solutioning: flexibility and willingness to determine new or enhanced functionality. Large scale Billing Operations experience in 1 or more of the following industries: Utilities, Telecom, Credit Cards, Financial Services, or Government.
+SKILLS:
+None listed
