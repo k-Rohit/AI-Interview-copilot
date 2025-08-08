@@ -89,6 +89,4 @@ Cannot connect to backend server
 
 **Made with ❤️ for better hiring decisions**
 
-[⭐ Star this repo](https://github.com/yourusername/ai-interview-assistant) | [🐛 Report Bug](https://github.com/yourusername/ai-interview-assistant/issues) | [💡 Request Feature](https://github.com/yourusername/ai-interview-assistant/issues)
-
 </div>
