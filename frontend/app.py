@@ -18,7 +18,7 @@ if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
 
 user_key = st.sidebar.text_input(
-    "OpenAI API Key (optional)",
+    "OpenAI API Key",
     value=st.session_state.openai_api_key,
     type="password",
     help="If you want to use your own OpenAI key, paste it here. It will be sent to the backend for each request."
