@@ -62,7 +62,6 @@ streamlit run app.py
 3. Click "Generate Summary for generating a full fledged summary of the candidate with details"
 4. Click "Generate Questions for generating questions for the candidate"
 
-```
 
 ## 🔍 Troubleshooting
 
@@ -70,9 +69,9 @@ streamlit run app.py
 
 **1. OpenAI API Key Error**
 ```
-Error: The api_key client option must be set
+Error: OPENAI_API_KEY not found or is invalid
 ```
-**Solution:** Check your `.env` file format (no quotes around the key)
+**Solution:** Check that you have pasted the key in streamlit and its correct
 
 **2. File Upload Error**
 ```
@@ -80,14 +79,16 @@ Error: Could not extract text from resume
 ```
 **Solution:** Ensure the PDF is text-based (not scanned images)
 
-**3. Import Error**
-```
-ImportError: No module named 'fitz'
-```
-**Solution:** Install PyMuPDF: `pip install PyMuPDF`
-
 **4. Connection Error**
 ```
 Cannot connect to backend server
 ```
 **Solution:** Make sure backend is running on port 8000
+
+<div align="center">
+
+**Made with ❤️ for better hiring decisions**
+
+[⭐ Star this repo](https://github.com/yourusername/ai-interview-assistant) | [🐛 Report Bug](https://github.com/yourusername/ai-interview-assistant/issues) | [💡 Request Feature](https://github.com/yourusername/ai-interview-assistant/issues)
+
+</div>
