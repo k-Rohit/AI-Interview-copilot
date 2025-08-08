@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, Form, HTTPException
+from fastapi import FastAPI, UploadFile, Form, HTTPException, Header
 from typing import Dict, Any
 from fastapi.middleware.cors import CORSMiddleware
 import logging
@@ -26,6 +26,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def _extract_bearer_token(auth_header: str | None) -> str | None:
+    if not auth_header:
+        return None
+    # Accept either "Bearer <key>" or direct key in header
+    if auth_header.lower().startswith("bearer "):
+        return auth_header.split(" ", 1)[1].strip()
+    return auth_header.strip()
+
 def extract_text_with_pymupdf(file, filename: str) -> str:
     try:
         file.seek(0)
@@ -46,11 +54,19 @@ def extract_text_with_pymupdf(file, filename: str) -> str:
         logger.error(f"PyMuPDF extraction failed: {str(e)}")
         raise Exception(f"Failed to process file: {str(e)}")
 
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the AI Interview Assistant API. Use /docs for API documentation."}
 @app.post("/generate-summary", response_model=SummaryResponse)
 async def generate_summary(
     resume: UploadFile,
-    job_description: str = Form(...)
+    job_description: str = Form(...),
+    authorization: str | None = Header(None)
 ) -> Dict[str, Any]:
+    openai_api_key = _extract_bearer_token(authorization)
+    if not openai_api_key:
+         raise HTTPException(status_code=401, detail="OpenAI API key missing or invalid")
     if not resume or not job_description.strip():
         raise HTTPException(status_code=400, detail="Resume and job description are required")
 
@@ -62,7 +78,7 @@ async def generate_summary(
     if not resume_text.strip():
         raise HTTPException(status_code=400, detail="Could not extract text from resume.")
 
-    summary_chain = generate_summary_chain()
+    summary_chain = generate_summary_chain(api_key=openai_api_key)
     summary = summary_chain.run({
         "resume": resume_text,
         "job_description": job_description
@@ -76,12 +92,17 @@ async def generate_summary(
 async def generate_questions(
     resume_text: str = Form(...),
     job_description: str = Form(...),
-    interview_type: str = Form(...)
+    interview_type: str = Form(...),
+    authorization: str | None = Header(None)
 ):
+     
+    openai_api_key = _extract_bearer_token(authorization)
+    if not openai_api_key:
+         raise HTTPException(status_code=401, detail="OpenAI API key missing or invalid")
     if not resume_text.strip() or not job_description.strip() or not interview_type.strip():
         raise HTTPException(status_code=400, detail="All fields are required")
 
-    question_chain = generate_questions_chain()
+    question_chain = generate_questions_chain(api_key=openai_api_key)
     questions_raw = question_chain.run({
         "resume": resume_text,
         "job_description": job_description,
@@ -121,4 +142,5 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001,reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port,reload=True)

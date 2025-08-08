@@ -4,16 +4,19 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os 
 
-load_dotenv()
+# load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise Exception("OPENAI_API_KEY not found in environment variables")
+# api_key = os.getenv("OPENAI_API_KEY")
+# if not api_key:
+#     raise Exception("OPENAI_API_KEY not found in environment variables")
 
-def generate_questions_chain():
+def generate_questions_chain(api_key: str | None = None):
     """
     Creates a LangChain for generating tailored interview questions for ANY role/industry
     """
+    key = api_key or os.getenv("OPENAI_API_KEY")
+    if not key:
+     raise Exception("OPENAI_API_KEY not found. Provide it via env or pass api_key to generate_questions_chain().")
     # Comprehensive prompt template
     prompt_template = """
 You are an expert HR professional and seasoned interviewer with extensive experience in conducting interviews across ALL industries, roles, and seniority levels - from entry-level to C-suite positions, across technical, non-technical, creative, sales, marketing, operations, finance, healthcare, education, and all other domains. Your task is to generate highly relevant, insightful interview questions based on the provided information.
@@ -123,7 +126,7 @@ Remember to:
     llm = ChatOpenAI(
         temperature=0.2, 
         model_name="gpt-4o-mini",
-        openai_api_key=api_key
+        openai_api_key=key
     )
 
     chain = LLMChain(

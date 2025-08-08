@@ -8,22 +8,26 @@ import json
 
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise Exception("OPENAI_API_KEY not found in environment variables")
+# api_key = os.getenv("OPENAI_API_KEY")
+# if not api_key:
+#     raise Exception("OPENAI_API_KEY not found in environment variables")
 
-def generate_summary_chain():
+def generate_summary_chain(api_key: str | None = None):
     """
     Creates a LangChain for generating comprehensive summaries of candidates 
     based on their resume alignment with job requirements
     """
-    
+    key = api_key or os.getenv("OPENAI_API_KEY")
+    print(key)
+    if not key:
+        raise Exception("OPENAI_API_KEY not found. Provide it via env or pass api_key to generate_summary_chain().")
     # Comprehensive prompt template
     prompt_template = """
 You are an expert talent acquisition specialist and HR professional with over 15 years of experience in candidate evaluation across ALL industries and roles. You have a proven track record of identifying top talent and assessing candidate-role fit for positions ranging from entry-level to executive roles across technical, non-technical, creative, sales, marketing, operations, finance, healthcare, and all other domains.
 
 Your task is to analyze a candidate's resume against a specific job description and provide a comprehensive, objective, and insightful summary that helps hiring managers make informed decisions.
-
+Check that the job description is relevant to the resume provided and also job description is properly mentioened not like anything is put there if that's the case simply say
+I need a job description to generate a summary.
 **INPUT INFORMATION:**
 Job Description: {job_description}
 
@@ -126,7 +130,7 @@ Conduct a thorough analysis using the following methodology:
     llm = ChatOpenAI(
         temperature=0.2,
         model_name="gpt-4o-mini",
-        openai_api_key=api_key
+        openai_api_key=key
     )
     
     # Create the chain

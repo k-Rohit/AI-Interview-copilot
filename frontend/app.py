@@ -12,12 +12,27 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-API_BASE_URL = "http://localhost:8000"
+# Sidebar OpenAI key input
+st.sidebar.title("Settings")
+if "openai_api_key" not in st.session_state:
+    st.session_state.openai_api_key = ""
 
-def make_api_request(endpoint: str, files: Dict = None, data: Dict = None) -> Dict[str, Any]:
+user_key = st.sidebar.text_input(
+    "OpenAI API Key (optional)",
+    value=st.session_state.openai_api_key,
+    type="password",
+    help="If you want to use your own OpenAI key, paste it here. It will be sent to the backend for each request."
+)
+st.session_state.openai_api_key = user_key
+
+API_BASE_URL = "http://localhost:8000"
+def make_api_request(endpoint: str, files: Dict = None, data: Dict = None, api_key: str = None) -> Dict[str, Any]:
     try:
         url = f"{API_BASE_URL}{endpoint}"
-        response = requests.post(url, files=files, data=data, timeout=60)
+        headers = {}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+        response = requests.post(url, files=files, data=data, headers=headers, timeout=60)
         if response.status_code == 200:
             return response.json()
         else:
@@ -30,9 +45,10 @@ def make_api_request(endpoint: str, files: Dict = None, data: Dict = None) -> Di
     except requests.exceptions.Timeout:
         raise Exception("Request timed out. The AI processing is taking longer than expected.")
     except requests.exceptions.ConnectionError:
-        raise Exception("Cannot connect to the backend server. Make sure it's running on port 8001.")
+        raise Exception("Cannot connect to the backend server. Make sure it's running on port 8000.")
     except Exception as e:
         raise Exception(str(e))
+
 
 def extract_text_from_file(uploaded_file) -> str:
     try:
@@ -122,7 +138,7 @@ def ai_interview_assistant():
             status_text.text("🤖 AI is generating candidate summary...")
             progress_bar.progress(60)
 
-            result = make_api_request("/generate-summary", files=files, data=data)
+            result = make_api_request("/generate-summary", files=files, data=data,api_key=st.session_state.get("openai_api_key"))
 
             progress_bar.progress(90)
             progress_bar.progress(100)
@@ -190,7 +206,7 @@ def generate_questions():
                 "job_description": st.session_state['job_description'],
                 "interview_type": interview_type
             }
-            result = make_api_request("/generate-questions", data=data)
+            result = make_api_request("/generate-questions", data=data,api_key=st.session_state.get("openai_api_key"))
             progress_bar.progress(100)
             status_text.empty()
             progress_bar.empty()
