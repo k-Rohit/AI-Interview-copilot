@@ -9,3 +9,5 @@ fitz
 langchain-openai
 pydantic
 langchain-community
+python-multipart
+pymupdf
