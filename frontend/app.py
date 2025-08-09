@@ -2,7 +2,6 @@ import streamlit as st
 from utils import *
 from openai import OpenAI
 
-# ====== PAGE SETTINGS ======
 st.set_page_config(
     page_title="AI Interview Assistant",
     page_icon="🧠",
@@ -10,7 +9,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ====== SIDEBAR ======
 st.sidebar.title("Settings")
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
@@ -118,7 +116,6 @@ def generate_questions():
 def ai_interview():
     st.title("🎤 AI Voice Interview")
 
-    # Ensure API key is set
     if not st.session_state.openai_api_key:
         st.error("⚠ Please enter your OpenAI API key in the sidebar.")
         return
@@ -128,7 +125,6 @@ def ai_interview():
         st.warning("⚠ Please generate interview questions first.")
         return
 
-    # Create client
     client = OpenAI(api_key=st.session_state.openai_api_key)
 
     # Session state vars
@@ -136,17 +132,13 @@ def ai_interview():
         st.session_state.current_q = 0
     if "transcripts" not in st.session_state:
         st.session_state.transcripts = []
-
-    # If still questions left
     if st.session_state.current_q < len(st.session_state["questions"]):
         question = st.session_state["questions"][st.session_state.current_q]
-        q_num = st.session_state.current_q + 1  # 1-based numbering
+        q_num = st.session_state.current_q + 1 
 
-        # Start question + auto play TTS
         if st.button(f"▶ Start Question {q_num}", use_container_width=True):
-            speak_tts(client, question)  # play immediately
+            speak_tts(client, question)
 
-        # Record answer
         audio_input = st.audio_input("🎙 Your Answer")
 
         if audio_input and st.button("💬 Submit Answer", use_container_width=True):
@@ -161,22 +153,16 @@ def ai_interview():
 
     else:
         st.success("✅ Interview complete!")
-        st.download_button(
-            "📥 Download Transcript",
-            data=open(TRANSCRIPT_FILE, "r", encoding="utf-8").read(),
-            file_name="interview_transcript.txt",
-            mime="text/plain"
-        )
+        clear_transcript_file()
+        
 
-    # Transcript view
     if st.session_state.transcripts:
         st.subheader("📜 Interview Transcript")
         for idx, item in enumerate(st.session_state.transcripts, 1):
-            st.write(f"**Q{idx}:** {item['question']}")
-            st.write(f"**A{idx}:** {item['answer']}")
+            st.write(f"**Q {idx}:** {item['question']}")
+            st.write(f"**A {idx}:** {item['answer']}")
 
 
-# ====== NAVIGATION ======
 def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.radio("Go to", ["Generate summary", "Generate Questions","AI Interview"])

@@ -95,3 +95,8 @@ def save_transcript_to_file(question, answer):
     with open(TRANSCRIPT_FILE, "a", encoding="utf-8") as f:
         f.write(f"Q: {question}\n")
         f.write(f"A: {answer}\n\n")
+        
+def clear_transcript_file():
+    """Clear the transcript file."""
+    with open(TRANSCRIPT_FILE, "w", encoding="utf-8") as f:
+        f.write("")
