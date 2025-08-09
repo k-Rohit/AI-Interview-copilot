@@ -3,7 +3,7 @@ import requests
 import json
 import re
 from typing import Dict, Any
-import fitz  # PyMuPDF to extract text from PDF
+import fitz
 
 st.set_page_config(
     page_title="AI Interview Assistant",
@@ -25,7 +25,7 @@ user_key = st.sidebar.text_input(
 )
 st.session_state.openai_api_key = user_key
 
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = "https://ai-interview-copilot-backend.onrender.com"
 def make_api_request(endpoint: str, files: Dict = None, data: Dict = None, api_key: str = None) -> Dict[str, Any]:
     try:
         url = f"{API_BASE_URL}{endpoint}"
