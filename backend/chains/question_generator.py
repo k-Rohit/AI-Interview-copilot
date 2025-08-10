@@ -1,17 +1,25 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from dotenv import load_dotenv
 import os 
 
 def generate_questions_chain(api_key: str | None = None):
     """
-    Creates a LangChain for generating tailored interview questions for ANY role/industry
+    Creates a LangChain for generating tailored interview questions for ANY role/industry.
+    
+    Parameters:
+    - api_key (str | None): Optional API key to authenticate with OpenAI. If not provided,
+      it will attempt to fetch it from the environment variable OPENAI_API_KEY.
+
+    Returns:
+    - LLMChain: A LangChain LLMChain object ready to be run with job description,
+      resume, and interview type to generate questions.
     """
+    
     key = api_key or os.getenv("OPENAI_API_KEY")
     if not key:
      raise Exception("OPENAI_API_KEY not found. Provide it via env or pass api_key to generate_questions_chain().")
-    # Comprehensive prompt template
+ 
     prompt_template = """
 You are an expert HR professional and seasoned interviewer with extensive experience in conducting interviews across ALL industries, roles, and seniority levels - from entry-level to C-suite positions, across technical, non-technical, creative, sales, marketing, operations, finance, healthcare, education, and all other domains. Your task is to generate highly relevant, insightful interview questions based on the provided information.
 
@@ -93,18 +101,20 @@ Remember to:
 - Focus on role-relevant skills rather than assuming technical background
 - Tailor the complexity and terminology to match the position level and field
 """
+    # Create a LangChain PromptTemplate object
+    # - input_variables define the placeholders that will be replaced at runtime
     prompt = PromptTemplate(
         input_variables=["job_description", "resume", "interview_type"],
         template=prompt_template
     )
-    
-    # Initialize the LLM
+    # Initialize the OpenAI LLM using LangChain's ChatOpenAI wrapper
+    # - temperature controls randomness (low = more deterministic)
     llm = ChatOpenAI(
         temperature=0.2, 
         model_name="gpt-4o-mini",
         openai_api_key=key
     )
-
+    # Create an LLMChain which links the LLM to the prompt
     chain = LLMChain(
         llm=llm,
         prompt=prompt,

@@ -1,22 +1,23 @@
-
 from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os 
-import json
-
-load_dotenv()
-
-# api_key = os.getenv("OPENAI_API_KEY")
-# if not api_key:
-#     raise Exception("OPENAI_API_KEY not found in environment variables")
 
 def generate_summary_chain(api_key: str | None = None):
     """
-    Creates a LangChain for generating comprehensive summaries of candidates 
-    based on their resume alignment with job requirements
+    Creates a LangChain for generating a comprehensive candidate summary report
+    based on the alignment of a resume with a given job description.
+
+    Parameters:
+    - api_key (str | None): Optional OpenAI API key. If not provided,
+      will try to fetch from environment variable OPENAI_API_KEY.
+
+    Returns:
+    - LLMChain: LangChain object that can be run with job description
+      and resume to generate a candidate summary report.
     """
+    # Use the provided API key if available, otherwise check environment variable
     key = api_key or os.getenv("OPENAI_API_KEY")
     print(key)
     if not key:
@@ -94,7 +95,6 @@ Conduct a thorough analysis using the following methodology:
 - **[Achievement]**: [Impact and relevance to role]
 - **[Achievement]**: [Impact and relevance to role]
 
-
 ### Overall Recommendation
 
 #### **Fit Score**: [X/10] 
@@ -120,20 +120,22 @@ Conduct a thorough analysis using the following methodology:
 - Tailor analysis complexity to the seniority level of the position
 """
 
-    # Create the prompt template
+    # Create a PromptTemplate object
+    # - input_variables are placeholders in the prompt that will be replaced at runtime
     prompt = PromptTemplate(
         input_variables=["job_description", "resume"],
         template=prompt_template
     )
     
-    # Initialize the LLM
+    # Initialize the ChatOpenAI LLM
+    # - temperature=0.2 makes responses more deterministic and focused
     llm = ChatOpenAI(
         temperature=0.2,
         model_name="gpt-4o-mini",
         openai_api_key=key
     )
     
-    # Create the chain
+    # Create an LLMChain to link the LLM with the prompt
     chain = LLMChain(
         llm=llm,
         prompt=prompt,
