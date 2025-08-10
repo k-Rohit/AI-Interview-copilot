@@ -34,6 +34,9 @@ An intelligent interview preparation tool that generates tailored candidate summ
 
 - **Frontend**: [AI Interview Assistant Frontend](https://ai-int-copilot.streamlit.app/)
 - **Backend**: [AI Interview Assistant Backend](https://ai-interview-copilot-backend.onrender.com/)
+- Ensure the backend URL is correct and the server is running. You may have to start the backend server by going to the backend url as currently its using free servive so it spins down after few minutes of inactivity.
+
+
 
 ---
 
