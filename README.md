@@ -179,19 +179,6 @@ Error: Interview type file not found
 
 ---
 
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## ❤️ Acknowledgments
-
-- [OpenAI](https://openai.com/) for GPT-4.
-- [LangChain](https://www.langchain.com/) for seamless AI integration.
-- [Streamlit](https://streamlit.io/) for the interactive frontend.
-- [FastAPI](https://fastapi.tiangolo.com/) for the robust backend.
-
 ---
 
 <div align="center">
