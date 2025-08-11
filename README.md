@@ -107,6 +107,9 @@ streamlit run app.py
 - Conduct a voice interview using AI.
 - Record answers and save transcripts for review.
 
+### 4. **Evaluation of results**
+- Evaluate the candidate on the basis of the answers he gave in the interview
+
 ---
 
 ## 📂 Project Structure
