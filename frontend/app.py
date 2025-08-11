@@ -1,6 +1,7 @@
 import streamlit as st
 from utils import *
 from openai import OpenAI
+from config import TRANSCRIPT_FILE
 
 # Set up the Streamlit page configuration
 st.set_page_config(
@@ -134,7 +135,7 @@ def generate_questions():
 # Function to conduct an AI-powered voice interview
 def ai_interview():
     st.title("🎤 AI Voice Interview")  # Page title
-
+    
     # Check if OpenAI API key is provided
     if not st.session_state.openai_api_key:
         st.error("⚠ Please enter your OpenAI API key in the sidebar.")
@@ -145,44 +146,71 @@ def ai_interview():
         st.warning("⚠ Please generate interview questions first.")
         return
 
+    # Let user select number of questions (default 5 or max available)
+    num_questions = st.number_input(
+        "📋 Number of Questions for Interview",
+        min_value=1,
+        max_value=len(st.session_state["questions"]),
+        value=st.session_state.get("num_questions", min(5, len(st.session_state["questions"]))),
+        step=1
+    )
+
+    st.session_state.num_questions = num_questions
+    st.info(f"✅ The interview will have {num_questions} questions.")
+
+    # Limit questions list dynamically
+    st.session_state.questions = st.session_state.questions[:num_questions]
+
     client = OpenAI(api_key=st.session_state.openai_api_key)  # Initialize OpenAI client
 
-    # Initialize session state variables for interview progress
+    # Initialize progress tracking
     if "current_q" not in st.session_state:
         st.session_state.current_q = 0
     if "transcripts" not in st.session_state:
         st.session_state.transcripts = []
 
-    # Display the current question and handle user interaction
-    if st.session_state.current_q < len(st.session_state["questions"]):
+    # Interview in progress
+    if st.session_state.current_q < st.session_state.num_questions:
         question = st.session_state["questions"][st.session_state.current_q]
         q_num = st.session_state.current_q + 1 
 
         if st.button(f"▶ Start Question {q_num}", use_container_width=True):
-            speak_tts(client, question)  # Use text-to-speech to ask the question
+            speak_tts(client, question)  # Ask the question with TTS
 
-        audio_input = st.audio_input("🎙 Your Answer")  # Capture user's audio input
+        audio_input = st.audio_input("🎙 Your Answer")  # Capture user's answer
 
         if audio_input and st.button("💬 Submit Answer", use_container_width=True):
-            answer_text = transcribe_audio(client, audio_input)  # Transcribe audio to text
+            answer_text = transcribe_audio(client, audio_input)  # Transcribe audio
             st.session_state.transcripts.append({
                 "question": question,
                 "answer": answer_text
             })
-            save_transcript_to_file(question, answer_text)  # Save transcript to file
-            st.session_state.current_q += 1  # Move to the next question
-            st.rerun()  # Refresh the page
+            save_transcript_to_file(question, answer_text)  # Save to transcript file
+            st.session_state.current_q += 1
+            st.rerun()
 
+    # Interview completed
     else:
-        st.success("✅ Interview complete!")  # Display success message
-        clear_transcript_file()  # Clear transcript file
+        st.success("✅ Interview complete!")
 
-    # Display the interview transcript
-    if st.session_state.transcripts:
-        st.subheader("📜 Interview Transcript")
-        for idx, item in enumerate(st.session_state.transcripts, 1):
-            st.write(f"**Q {idx}:** {item['question']}")
-            st.write(f"**A {idx}:** {item['answer']}")
+        if st.button("📊 Generate Results", use_container_width=True):
+            with st.spinner("Evaluating candidate answers..."):
+                chain = evaluate_answer(TRANSCRIPT_FILE, api_key=st.session_state.openai_api_key)
+
+                with open(TRANSCRIPT_FILE, "r", encoding="utf-8") as f:
+                    transcript_text = f.read().strip()
+
+                result = chain.run({"transcript": transcript_text})
+
+            st.success("Evaluation Completed ✅")
+            st.markdown(result)
+
+            clear_transcript_file()
+        if st.button("🔄 END Interview", use_container_width=True):
+            st.session_state.current_q = 0
+            st.session_state.transcripts = []
+            st.rerun()
+
 
 # Main function to handle navigation between pages
 def main():
