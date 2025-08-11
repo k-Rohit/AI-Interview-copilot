@@ -6,14 +6,18 @@ from typing import Dict, Any
 from config import API_BASE_URL, INTERVIEW_TYPES_FILE, TRANSCRIPT_FILE
 import io
 from openai import OpenAI
+from langchain.chains import LLMChain
+from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate
+import os
 
 # Function to make API requests to the backend
 def make_api_request(endpoint: str, files: Dict = None, data: Dict = None, api_key: str = None) -> Dict[str, Any]:
     """Generic API request handler."""
     try:
         url = f"{API_BASE_URL}{endpoint}"  # Construct the full API URL
-        headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}  # Add API key to headers if provided
-        response = requests.post(url, files=files, data=data, headers=headers, timeout=60)  # Make POST request
+        headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
+        response = requests.post(url, files=files, data=data, headers=headers, timeout=60)
         if response.status_code == 200:
             return response.json()  # Return JSON response if successful
         else:
@@ -51,9 +55,9 @@ def load_interview_types(file_path=INTERVIEW_TYPES_FILE):
     """Read interview types from a file."""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            return [line.strip() for line in f if line.strip()]  # Read and return non-empty lines
+            return [line.strip() for line in f if line.strip()]  
     except FileNotFoundError:
-        st.error(f"Interview type file not found: {file_path}")  # Display error if file is missing
+        st.error(f"Interview type file not found: {file_path}")
         return []
 
 # Function to display AI-generated questions in a structured format
@@ -110,3 +114,68 @@ def clear_transcript_file():
     """Clear the transcript file."""
     with open(TRANSCRIPT_FILE, "w", encoding="utf-8") as f:
         f.write("")  # Overwrite the file with an empty string
+        
+# Function to evaluate the answer 
+def evaluate_answer(file_path: str, api_key: str | None = None):
+    """
+    Creates an LLM chain for evaluating a candidate's answers from an interview transcript.
+    Returns the LLMChain object so you can call .run({"transcript": ...}) elsewhere.
+    """
+    # Read transcript
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Transcript file not found: {file_path}")
+    
+    with open(file_path, "r", encoding="utf-8") as f:
+        transcript_text = f.read().strip()
+    
+    if not transcript_text:
+        raise ValueError("Interview transcript is empty.")
+    
+    key = api_key or os.getenv("OPENAI_API_KEY")
+    if not key:
+        raise Exception("OPENAI_API_KEY not found. Provide it via env or pass api_key.")
+    
+    prompt_template = """
+You are a highly experienced hiring manager and interview panel lead with deep expertise in candidate assessment.
+Your task is to evaluate the candidate's answers in the transcript and provide a structured, evidence-based verdict.
+
+### Evaluation Framework
+1. **Understanding & Relevance** — Did the candidate understand the question and provide relevant answers?
+2. **Depth of Knowledge** — Did the answers demonstrate expertise, technical depth, and real-world experience?
+3. **Clarity & Communication** — Were responses clear, structured, and easy to follow?
+4. **Problem-Solving & Critical Thinking** — Did the candidate show analytical thinking, creativity, and logical reasoning?
+5. **Behavioral & Soft Skills** — Were responses aligned with good teamwork, leadership, adaptability, and culture fit?
+6. **Examples & Evidence** — Did the candidate support answers with concrete examples and measurable achievements?
+7. **Overall Impression** — Did the performance match, exceed, or fall short of expectations for this role?
+
+---
+
+### Interview Transcript:
+{transcript}
+
+---
+
+### Output Format:
+## Candidate Answer Evaluation Report
+
+### Strengths
+[List 2-5 strengths with supporting examples from the transcript]
+
+### Areas for Improvement
+[List 2-5 improvement areas with reasoning]
+
+### Verdict
+**Fit Score**: [X/10] — Explanation of score  
+**Recommendation**:
+- [ ] Strong Yes — Exceptional fit  
+- [ ] Yes — Good fit  
+- [ ] Maybe — Mixed performance, further assessment needed  
+- [ ] No — Not a good fit for this role  
+- [ ] Strong No — Clear mismatch
+
+Be objective, evidence-based, and base all reasoning strictly on the transcript provided.
+"""
+    prompt = PromptTemplate(input_variables=["transcript"], template=prompt_template)
+    llm = ChatOpenAI(temperature=0.2, model_name="gpt-4o-mini", openai_api_key=key)
+    chain = LLMChain(llm=llm, prompt=prompt, verbose=True)
+    return chain
