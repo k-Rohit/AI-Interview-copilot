@@ -1,4 +1,4 @@
-# 🧠 AI Interview Assistant
+# 🧠 AI-Interview-copilot
 
 An intelligent interview preparation tool that generates tailored candidate summaries and technical interview questions using AI. Built with **LangChain**, **OpenAI GPT-4**, **FastAPI**, and **Streamlit**.
 > [!CAUTION]
