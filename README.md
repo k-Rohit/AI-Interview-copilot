@@ -19,14 +19,10 @@ An intelligent interview preparation tool that generates tailored candidate summ
   - System design challenges.
   - Debugging and optimization skills.
 
-### ✅ **Export Results**
-- Download summaries and questions as TXT or JSON.
-
-### ✅ **Real-time Processing**
-- Fast PDF text extraction using **PyMuPDF**.
-
-### ✅ **Professional UI**
-- Clean, intuitive **Streamlit** interface for seamless interaction.
+### ✅ **AI Powered Interview and evaluation**
+  - Conduct a voice interview using AI.
+  - Record answers and save transcripts for review.
+  - Evaluate the candidate on the basis of the answers he gave in the interview
 
 ---
 
