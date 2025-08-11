@@ -48,7 +48,7 @@ def generate_summary():
         st.subheader("📝 Job Description")
         job_description = st.text_area("Paste job description here...", height=105) 
         if job_description:
-            st.caption(f"Characters: {len(job_description)}"
+            st.caption(f"Characters: {len(job_description)}")
 
     st.markdown("---")
     # Button to trigger summary generation
