@@ -34,6 +34,9 @@ An intelligent interview preparation tool that generates tailored candidate summ
 
 - **Frontend**: [AI Interview Assistant Frontend](https://ai-int-copilot.streamlit.app/)
 - **Backend**: [AI Interview Assistant Backend](https://ai-interview-copilot-backend.onrender.com/)
+- Ensure the backend URL is correct and the server is running. You may have to start the backend server by going to the backend url as currently its using free servive so it spins down after few minutes of inactivity.
+
+
 
 ---
 
@@ -175,19 +178,6 @@ Error: Interview type file not found
 **Solution:** Ensure `interview_types.txt` exists in the `frontend` directory.
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## ❤️ Acknowledgments
-
-- [OpenAI](https://openai.com/) for GPT-4.
-- [LangChain](https://www.langchain.com/) for seamless AI integration.
-- [Streamlit](https://streamlit.io/) for the interactive frontend.
-- [FastAPI](https://fastapi.tiangolo.com/) for the robust backend.
 
 ---
 
