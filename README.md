@@ -1,6 +1,8 @@
 # 🧠 AI Interview Assistant
 
 An intelligent interview preparation tool that generates tailored candidate summaries and technical interview questions using AI. Built with **LangChain**, **OpenAI GPT-4**, **FastAPI**, and **Streamlit**.
+<p style="color:red;"><b>⚠ Important:</b> Please start the backend server by going to the backend URL (<a href="https://ai-interview-copilot-backend.onrender.com/" target="_blank">https://ai-interview-copilot-backend.onrender.com/</a>) as it is currently using the free tier, so it spins down after a few minutes of inactivity. Sorry for the inconvenience.</p>
+
 
 ---
 
