@@ -28,11 +28,11 @@ def make_api_request(endpoint: str, files: Dict = None, data: Dict = None, api_k
                 error_msg = f'HTTP {response.status_code}: {response.text}'
             raise Exception(error_msg)
     except requests.exceptions.Timeout:
-        raise Exception("Request timed out.")  # Handle timeout errors
+        raise Exception("Request timed out.")
     except requests.exceptions.ConnectionError:
-        raise Exception("Cannot connect to the backend server.")  # Handle connection errors
+        raise Exception("Cannot connect to the backend server.")
     except Exception as e:
-        raise Exception(str(e))  # Handle other exceptions
+        raise Exception(str(e))
 
 # Function to extract text from uploaded files (PDF or TXT)
 def extract_text_from_file(uploaded_file) -> str:
@@ -42,13 +42,13 @@ def extract_text_from_file(uploaded_file) -> str:
             # Extract text from PDF using PyMuPDF
             pdf_bytes = uploaded_file.getvalue()
             doc = fitz.open(stream=pdf_bytes, filetype="pdf")
-            return "".join(page.get_text() for page in doc)  # Concatenate text from all pages
+            return "".join(page.get_text() for page in doc)
         elif uploaded_file.type in ["text/plain", "application/octet-stream"]:
             # Extract text from plain text files
             return uploaded_file.getvalue().decode("utf-8")
         return ""
     except Exception:
-        return ""  # Return empty string if extraction fails
+        return ""
 
 # Function to load interview types from a file
 def load_interview_types(file_path=INTERVIEW_TYPES_FILE):
@@ -63,35 +63,35 @@ def load_interview_types(file_path=INTERVIEW_TYPES_FILE):
 # Function to display AI-generated questions in a structured format
 def display_structured_questions(raw_text: str):
     """Display AI-generated questions without headings."""
-    lines = raw_text.strip().split('\n')  # Split text into lines
+    lines = raw_text.strip().split('\n')
     for q in lines:
-        q = re.sub(r'^\d+\.\s*', '', q.strip())  # Remove numbering if present
+        q = re.sub(r'^\d+\.\s*', '', q.strip())
         if q:
-            st.markdown(f"- {q}")  # Display each question as a bullet point
+            st.markdown(f"- {q}")
 
 # Function to show a progress bar with a message
 def show_progress(message, progress):
     """Helper to show progress bar."""
-    status_text = st.empty()  # Create an empty placeholder for the status text
-    status_text.text(message)  # Display the message
-    progress_bar = st.progress(progress)  # Display the progress bar
+    status_text = st.empty() 
+    status_text.text(message)
+    progress_bar = st.progress(progress)
     return status_text, progress_bar
 
 # Function to use text-to-speech (TTS) to speak text
 def speak_tts(client, text):
     """Speak text using GPT-4o-mini-TTS directly in memory."""
-    audio_buffer = io.BytesIO()  # Create an in-memory buffer for audio
+    audio_buffer = io.BytesIO() 
     with client.audio.speech.with_streaming_response.create(
-        model="gpt-4o-mini-tts",  # Specify the TTS model
-        voice="coral",  # Specify the voice
-        input=text,  # Input text to be spoken
-        instructions="Speak in a professional and clear tone."  # Instructions for the voice
+        model="gpt-4o-mini-tts", 
+        voice="coral", 
+        input=text,
+        instructions="Speak in a professional and clear tone." 
     ) as response:
         for chunk in response.iter_bytes():
-            audio_buffer.write(chunk)  # Write audio chunks to the buffer
+            audio_buffer.write(chunk)  
 
-    audio_buffer.seek(0)  # Reset the buffer pointer to the beginning
-    st.audio(audio_buffer, format="audio/mp3")  # Play the audio in Streamlit
+    audio_buffer.seek(0)  
+    st.audio(audio_buffer, format="audio/mp3")
 
 # Function to transcribe audio to text using OpenAI's Whisper model
 def transcribe_audio(client, audio_file):
@@ -106,14 +106,14 @@ def transcribe_audio(client, audio_file):
 def save_transcript_to_file(question, answer):
     """Append question and answer to a text file."""
     with open(TRANSCRIPT_FILE, "a", encoding="utf-8") as f:
-        f.write(f"Q: {question}\n")  # Write the question
-        f.write(f"A: {answer}\n\n")  # Write the answer
+        f.write(f"Q: {question}\n") 
+        f.write(f"A: {answer}\n\n") 
 
 # Function to clear the transcript file
 def clear_transcript_file():
     """Clear the transcript file."""
     with open(TRANSCRIPT_FILE, "w", encoding="utf-8") as f:
-        f.write("")  # Overwrite the file with an empty string
+        f.write("") 
         
 # Function to evaluate the answer 
 def evaluate_answer(file_path: str, api_key: str | None = None):
