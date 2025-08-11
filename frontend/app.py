@@ -5,10 +5,10 @@ from config import TRANSCRIPT_FILE
 
 # Set up the Streamlit page configuration
 st.set_page_config(
-    page_title="AI Interview Assistant",  # Title of the app
-    page_icon="🧠",  # Icon for the app
-    layout="wide",  # Use a wide layout
-    initial_sidebar_state="expanded"  # Sidebar starts expanded
+    page_title="AI Interview Assistant",
+    page_icon="🧠",
+    layout="wide",
+    initial_sidebar_state="expanded" 
 )
 
 # Sidebar settings for OpenAI API key input
@@ -39,21 +39,21 @@ def generate_summary():
     # Create two columns for resume upload and job description input
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("📄 Upload Resume")  # Section for uploading resume
-        resume_file = st.file_uploader("Choose resume file", type=["pdf", "txt"])  # File uploader
+        st.subheader("📄 Upload Resume") 
+        resume_file = st.file_uploader("Choose resume file", type=["pdf", "txt"])  
         if resume_file:
-            st.success(f"✅ Uploaded: {resume_file.name}")  # Display success message
+            st.success(f"✅ Uploaded: {resume_file.name}") 
 
     with col2:
-        st.subheader("📝 Job Description")  # Section for job description input
-        job_description = st.text_area("Paste job description here...", height=105)  # Text area for input
+        st.subheader("📝 Job Description")
+        job_description = st.text_area("Paste job description here...", height=105) 
         if job_description:
-            st.caption(f"Characters: {len(job_description)}")  # Display character count
+            st.caption(f"Characters: {len(job_description)}"
 
-    st.markdown("---")  # Horizontal line
+    st.markdown("---")
     # Button to trigger summary generation
     if st.button("🚀 Generate Summary", type="primary", use_container_width=True) and resume_file and job_description.strip():
-        status_text, progress_bar = show_progress("📤 Uploading files...", 20)  # Show progress bar
+        status_text, progress_bar = show_progress("📤 Uploading files...", 20) 
 
         try:
             # Prepare data for API request
@@ -89,25 +89,25 @@ def generate_summary():
         except Exception as e:
             progress_bar.empty()
             status_text.empty()
-            st.error(f"❌ Error: {str(e)}")  # Display error message
+            st.error(f"❌ Error: {str(e)}")
 
 # Function to generate interview questions
 def generate_questions():
-    st.title("🤖 Generate Questions")  # Page title
-    st.markdown("---")  # Horizontal line
+    st.title("🤖 Generate Questions")
+    st.markdown("---")
 
     # Check if summary data is available in session state
     if not all(k in st.session_state for k in ['resume_text', 'job_description']):
-        st.warning("Please generate summary first.")  # Warn user if summary is missing
+        st.warning("Please generate summary first.")
         return
 
-    # Load interview types and display a dropdown for selection
+    
     interview_types = load_interview_types()
     interview_type = st.selectbox("Select Interview Type", interview_types)
 
     # Button to trigger question generation
     if st.button("🚀 Generate Questions", type="primary"):
-        status_text, progress_bar = show_progress("🤖 AI is generating questions...", 50)  # Show progress bar
+        status_text, progress_bar = show_progress("🤖 AI is generating questions...", 50)
         try:
             # Prepare data for API request
             data = {
@@ -130,11 +130,11 @@ def generate_questions():
         except Exception as e:
             progress_bar.empty()
             status_text.empty()
-            st.error(f"❌ Error: {str(e)}")  # Display error message
+            st.error(f"❌ Error: {str(e)}")
 
 # Function to conduct an AI-powered voice interview
 def ai_interview():
-    st.title("🎤 AI Voice Interview")  # Page title
+    st.title("🎤 AI Voice Interview")
     
     # Check if OpenAI API key is provided
     if not st.session_state.openai_api_key:
@@ -161,7 +161,7 @@ def ai_interview():
     # Limit questions list dynamically
     st.session_state.questions = st.session_state.questions[:num_questions]
 
-    client = OpenAI(api_key=st.session_state.openai_api_key)  # Initialize OpenAI client
+    client = OpenAI(api_key=st.session_state.openai_api_key)
 
     # Initialize progress tracking
     if "current_q" not in st.session_state:
@@ -177,10 +177,10 @@ def ai_interview():
         if st.button(f"▶ Start Question {q_num}", use_container_width=True):
             speak_tts(client, question)  # Ask the question with TTS
 
-        audio_input = st.audio_input("🎙 Your Answer")  # Capture user's answer
+        audio_input = st.audio_input("🎙 Your Answer")
 
         if audio_input and st.button("💬 Submit Answer", use_container_width=True):
-            answer_text = transcribe_audio(client, audio_input)  # Transcribe audio
+            answer_text = transcribe_audio(client, audio_input) 
             st.session_state.transcripts.append({
                 "question": question,
                 "answer": answer_text
@@ -214,7 +214,7 @@ def ai_interview():
 
 # Main function to handle navigation between pages
 def main():
-    st.sidebar.title("Navigation")  # Sidebar navigation
+    st.sidebar.title("Navigation") 
     page = st.sidebar.radio("Go to", ["Generate summary", "Generate Questions", "AI Interview"])
     if page == "Generate summary":
         generate_summary()
@@ -223,7 +223,7 @@ def main():
     else:
         ai_interview()
 
-    st.markdown("---")  # Horizontal line
+    st.markdown("---") 
     st.markdown(
         "<div style='text-align: center; color: gray;'>Made with ❤️ for better hiring decisions</div>",
         unsafe_allow_html=True
